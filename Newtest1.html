@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Husband ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffe6e6;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #container { width: 100%; padding: 1rem; }
+    h1 { color: #d63384; font-size: 1.8rem; margin-bottom: 2rem; }
+
+    .buttons { 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      gap: 1.5rem; 
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.1s;
+    }
+    
+    button:active { transform: scale(0.9); }
+
+    .btn-yes { background-color: #ff4d6d; color: white; }
+    #noBtn { background-color: #888; color: white; }
+
+    #noChoiceMsg {
+      font-size: 1.5rem;
+      color: #ff0000;
+      font-weight: bold;
+      height: 30px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Hide extra pages initially */
+    #confirmPage, #extraSurePage, #success {
+      display: none;
+    }
+
+    .video-container {
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 350px;
+      margin: 1rem auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <div id="mainContent">
+      <h1>Will you be my Valentine?</h1>
+      <div class="buttons">
+        <button class="btn-yes" onclick="showNext('mainContent', 'confirmPage')">Yes</button>
+        <button id="noBtn" onclick="showNoChoice()">No</button>
+      </div>
+      <div id="noChoiceMsg">Vaaipilla Raja Vaaipilla😜</div>
+    </div>
+
+    <div id="confirmPage">
+      <h1>Are you sure? 🫣</h1>
+      <div class="buttons">
+        <button class="btn-yes" onclick="showNext('confirmPage', 'extraSurePage')">Yes!</button>
+      </div>
+    </div>
+
+    <div id="extraSurePage">
+      <h1> Nalla Yosichukonga 😉</h1>
+      <div class="buttons">
+        <button class="btn-yes" onclick="celebrate()">YES❤️</button>
+      </div>
+    </div>
+
+    <div id="success">
+      <h1> Aaahaaaaaan!❤️ 
+                Apo Seekiram Vanga </h1>
+      <div class="video-container">
+        <iframe id="valVideo" width="100%" height="200" 
+          src="https://www.youtube.com/embed/zWI7MELXMO4" 
+          frameborder="0" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const noChoiceMsg = document.getElementById('noChoiceMsg');
+
+    function showNoChoice() {
+      noChoiceMsg.style.opacity = "1";
+      setTimeout(() => { noChoiceMsg.style.opacity = "0"; }, 2000);
+    }
+
+    // Generic function to hide one page and show the next
+    function showNext(currentId, nextId) {
+      document.getElementById(currentId).style.display = 'none';
+      document.getElementById(nextId).style.display = 'block';
+    }
+
+    function celebrate() {
+      document.getElementById('extraSurePage').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+      setInterval(createHeart, 200);
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '🎉❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 5000);
+    }
+  </script>
+</body>
+</html>
